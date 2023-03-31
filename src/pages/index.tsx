@@ -177,18 +177,16 @@ export default function Home() {
 	const [page, setPage] = useState(0);
 	const [itemsPage, setItemsPage] = useState(30);
 	const [searchText, setSearchText] = useState("");
+	const [jobsList, setJobsList] = useState([]);
 
 	const fetcher = (url: string) => fetch(url).then((res) => res.json());
 	const { data, error } = useSWR("/api/startupdata", fetcher);
 
 	useEffect(() => {
-		if (data) JobsList({ data, page, itemsPage });
-	}, []);
-
-	if (!data) return;
-	console.log(data[Object.keys(data)[0]]);
-
-	const jobsList = JobsList({ data, page, itemsPage, searchText });
+		if (data) {
+			setJobsList(JobsList({ data, page, itemsPage, searchText }));
+		}
+	}, [data]);
 
 	return (
 		<>
@@ -244,10 +242,11 @@ export default function Home() {
 						}}
 					/>
 					<div className="grid grid-cols-1 gap-4 sm:grid-cols-3 mt-12">
-						{jobsList.slice(
-							page * itemsPage,
-							(page + 1) * itemsPage
-						)}
+						{jobsList &&
+							jobsList.slice(
+								page * itemsPage,
+								(page + 1) * itemsPage
+							)}
 					</div>
 					<Pagination
 						currentPage={page}
