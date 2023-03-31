@@ -229,29 +229,29 @@ export default function Home() {
 
 				{/* <!-- Open Graph / Facebook --> */}
 				<meta property="og:type" content="website" />
-				<meta property="og:url" content="https://metatags.io/" />
+				<meta
+					property="og:url"
+					content="https://www.vagasemstartups.com"
+				/>
 				<meta property="og:title" content="Vagas em Startups" />
 				<meta
 					property="og:description"
 					content="Trabalhe nas melhores startups do Brail"
 				/>
-				<meta
-					property="og:image"
-					content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
-				/>
+				<meta property="og:image" content="meta_img.png" />
 
 				{/* <!-- Twitter --> */}
 				<meta property="twitter:card" content="summary_large_image" />
-				<meta property="twitter:url" content="https://metatags.io/" />
+				<meta
+					property="twitter:url"
+					content="https://www.vagasemstartups.com"
+				/>
 				<meta property="twitter:title" content="Vagas em Startups" />
 				<meta
 					property="twitter:description"
 					content="Trabalhe nas melhores startups do Brail"
 				/>
-				<meta
-					property="twitter:image"
-					content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
-				></meta>
+				<meta property="twitter:image" content="meta_img.png"></meta>
 			</Head>
 			<main className="w-full bg-blue-950 min-h-screen px-4">
 				<div className="mx-auto container max-w-4xl pt-16 md:pt-32 pb-8">
