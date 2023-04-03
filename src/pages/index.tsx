@@ -11,6 +11,8 @@ import canaryLogo from "../../public/logos/canary.svg";
 import domoLogo from "../../public/logos/domo.jpeg";
 import valorLogo from "../../public/logos/valor.svg";
 import ycLogo from "../../public/logos/yc.png";
+import loader from "../../json/color-loader.json";
+import Lottie from "react-lottie-player";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -179,6 +181,7 @@ export default function Home() {
 	const [itemsPage, setItemsPage] = useState(30);
 	const [searchText, setSearchText] = useState("");
 	const [jobsList, setJobsList] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	const fetcher = (url: string) => fetch(url).then((res) => res.json());
 	const { data, error } = useSWR("/api/startupdata", fetcher);
@@ -186,6 +189,7 @@ export default function Home() {
 	useEffect(() => {
 		if (data) {
 			setJobsList(JobsList({ data, page, itemsPage, searchText }));
+			setLoading(false);
 		}
 	}, [data, searchText]);
 
@@ -255,7 +259,7 @@ export default function Home() {
 				<meta property="twitter:image" content="meta_img.png"></meta>
 			</Head>
 			<main className="w-full bg-blue-950 min-h-screen px-4">
-				<div className="mx-auto container max-w-4xl pt-16 md:pt-32 pb-8">
+				<div className="mx-auto container max-w-4xl pt-16 md:pt-32 pb-8 flex flex-col items-center min-h-screen">
 					<h1 className="text-8xl text-white font-bold mx-auto text-center">
 						Vagas em Startups
 					</h1>
@@ -264,31 +268,51 @@ export default function Home() {
 						Y Combinator, Canary, Domo, KASZEK, Valor Capital e
 						Astella
 					</h3>
-					<Pagination
-						currentPage={page}
-						nPages={Math.ceil(jobsList.length / itemsPage)}
-						setPage={setPage}
-					/>
-					<input
-						className="bg-stone-50 w-96 rounded-lg border-2 border-stone-300 px-2.5 py-1 mt-8"
-						placeholder="Pesquisar..."
-						onChange={(event) => {
-							page > 0 && setPage(0);
-							setSearchText(event.target.value);
-						}}
-					/>
-					<div className="grid grid-cols-1 gap-4 sm:grid-cols-3 mt-12">
-						{jobsList &&
-							jobsList.slice(
-								page * itemsPage,
-								(page + 1) * itemsPage
-							)}
-					</div>
-					<Pagination
-						currentPage={page}
-						nPages={Math.ceil(jobsList.length / itemsPage)}
-						setPage={setPage}
-					/>
+					{loading ? (
+						<div className="flex items-center justify-center grow h-full">
+							<Lottie
+								loop
+								animationData={loader}
+								play
+								style={{ width: 250, height: 250 }}
+							/>
+						</div>
+					) : (
+						<div>
+							<div>
+								<Pagination
+									currentPage={page}
+									nPages={Math.ceil(
+										jobsList.length / itemsPage
+									)}
+									setPage={setPage}
+								/>
+							</div>
+							<input
+								className="bg-stone-50 w-96 rounded-lg border-2 border-stone-300 px-2.5 py-1 mt-8"
+								placeholder="Pesquisar..."
+								onChange={(event) => {
+									page > 0 && setPage(0);
+									setSearchText(event.target.value);
+								}}
+							/>
+							<div className="grid grid-cols-1 gap-4 sm:grid-cols-3 mt-12">
+								{jobsList.slice(
+									page * itemsPage,
+									(page + 1) * itemsPage
+								)}
+							</div>
+							<div>
+								<Pagination
+									currentPage={page}
+									nPages={Math.ceil(
+										jobsList.length / itemsPage
+									)}
+									setPage={setPage}
+								/>
+							</div>
+						</div>
+					)}
 				</div>
 			</main>
 		</>
