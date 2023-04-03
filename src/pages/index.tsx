@@ -199,7 +199,7 @@ export default function Home() {
 				<title>Vagas em Startups</title>
 				<meta
 					name="description"
-					content="Trabalhe nas melhores startups do Brasil"
+					content="Encontre vagas de trabalho em startups investidas por Y Combinator, Canary, Valor Capital, KASZEK, Domo Invest e Astella"
 				/>
 				<meta
 					name="viewport"
