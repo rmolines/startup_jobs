@@ -199,7 +199,7 @@ export default function Home() {
 				<title>Vagas em Startups</title>
 				<meta
 					name="description"
-					content="Encontre vagas de trabalho em startups investidas por Y Combinator, Canary, Valor Capital, KASZEK, Domo Invest e Astella"
+					content="Encontre vagas de trabalho nas melhores startups do Brasil investidas por Y Combinator, Canary, Valor Capital, KASZEK, Domo Invest e Astella"
 				/>
 				<meta
 					name="viewport"
@@ -229,7 +229,7 @@ export default function Home() {
 				<meta name="title" content="Vagas em Startups" />
 				<meta
 					name="description"
-					content="Trabalhe nas melhores startups do Brail"
+					content="Trabalhe nas melhores startups do Brasil"
 				/>
 
 				{/* <!-- Open Graph / Facebook --> */}
@@ -241,7 +241,7 @@ export default function Home() {
 				<meta property="og:title" content="Vagas em Startups" />
 				<meta
 					property="og:description"
-					content="Trabalhe nas melhores startups do Brail"
+					content="Trabalhe nas melhores startups do Brasil"
 				/>
 				<meta property="og:image" content="meta_img.png" />
 
@@ -254,7 +254,7 @@ export default function Home() {
 				<meta property="twitter:title" content="Vagas em Startups" />
 				<meta
 					property="twitter:description"
-					content="Trabalhe nas melhores startups do Brail"
+					content="Trabalhe nas melhores startups do Brasil"
 				/>
 				<meta property="twitter:image" content="meta_img.png"></meta>
 			</Head>
