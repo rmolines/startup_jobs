@@ -39,8 +39,6 @@ function JobsList({ data, page, itemsPage, searchText }) {
 				)
 					return;
 
-				console.log(searchableText);
-
 				nJobs += 1;
 				jobsList.push(
 					<div
@@ -261,8 +259,10 @@ export default function Home() {
 					<h1 className="text-8xl text-white font-bold mx-auto text-center">
 						Vagas em Startups
 					</h1>
-					<h3 className="text-3xl font-light text-white mx-auto text-center mt-8">
-						Trabalhe nas melhores startups do Brasil
+					<h3 className="text-2xl font-light text-white mx-auto text-center mt-8">
+						Trabalhe nas melhores startups do Brasil investidas por
+						Y Combinator, Canary, Domo, KASZEK, Valor Capital e
+						Astella
 					</h3>
 					<Pagination
 						currentPage={page}
