@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import useSWR from "swr";
-import { HiExternalLink } from "react-icons/hi";
+import { HiExternalLink, HiSearch } from "react-icons/hi";
 import { useCallback, useEffect, useState } from "react";
 import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
 import kaszekLogo from "../../public/logos/kaszek.png";
@@ -278,7 +278,7 @@ export default function Home() {
 							/>
 						</div>
 					) : (
-						<div>
+						<div className="flex flex-col">
 							<div>
 								<Pagination
 									currentPage={page}
@@ -288,14 +288,17 @@ export default function Home() {
 									setPage={setPage}
 								/>
 							</div>
-							<input
-								className="bg-stone-50 w-96 rounded-lg border-2 border-stone-300 px-2.5 py-1 mt-8"
-								placeholder="Pesquisar..."
-								onChange={(event) => {
-									page > 0 && setPage(0);
-									setSearchText(event.target.value);
-								}}
-							/>
+							<div className="relative mt-8 mx-auto">
+								<HiSearch className="absolute inset-y-0 h-full text-xl left-2 text-slate-400	" />
+								<input
+									className="bg-stone-50 mx-auto text-xl w-[34rem] pl-8 max-w-full rounded-lg border-2 border-stone-300 px-2.5 py-1"
+									placeholder="Pesquisar..."
+									onChange={(event) => {
+										page > 0 && setPage(0);
+										setSearchText(event.target.value);
+									}}
+								/>
+							</div>
 							<div className="grid grid-cols-1 gap-4 sm:grid-cols-3 mt-12">
 								{jobsList.slice(
 									page * itemsPage,
