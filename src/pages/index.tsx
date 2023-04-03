@@ -27,8 +27,10 @@ function JobsList({ data, page, itemsPage, searchText }) {
 
 				const searchableText =
 					`${key.toLowerCase()} ${job.position.toLowerCase()} ${job.location.toLowerCase()} ${
-						job.investors &&
-						job.investors.map((investor) => investor).toLowerCase()
+						data[key].investors &&
+						data[key].investors.map((investor) =>
+							investor.toLowerCase()
+						)
 					}`.split(" ");
 
 				if (
@@ -36,6 +38,8 @@ function JobsList({ data, page, itemsPage, searchText }) {
 						.length === 0
 				)
 					return;
+
+				console.log(searchableText);
 
 				nJobs += 1;
 				jobsList.push(
@@ -71,7 +75,6 @@ function JobsList({ data, page, itemsPage, searchText }) {
 									<div className="flex flex-wrap mt-2"></div>
 									{data[key].investors.map((investor) => {
 										let investorDiv = [];
-										console.log(data[key]);
 
 										if (investor === "Kaszek") {
 											investorDiv.push(
@@ -186,7 +189,7 @@ export default function Home() {
 		if (data) {
 			setJobsList(JobsList({ data, page, itemsPage, searchText }));
 		}
-	}, [data]);
+	}, [data, searchText]);
 
 	return (
 		<>
