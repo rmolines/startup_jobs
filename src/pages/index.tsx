@@ -307,7 +307,7 @@ function JobList({ data, searchText }) {
 										})}
 									</div>
 									<a
-										className="hidden sm:block bg-blue-900 py-2 px-3 text-white rounded-lg w-fit sm:mt-8 self-start flex items-center gap-x-1"
+										className="hidden sm:flex bg-blue-900 py-2 px-3 text-white rounded-lg w-fit sm:mt-8 self-start items-center gap-x-1"
 										href={
 											data[key].source === "gupy"
 												? data[key].jobsUrl + job.url
