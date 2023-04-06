@@ -187,8 +187,17 @@ function JobList({ data, searchText }) {
 					jobsList.push(
 						<div
 							key={key + job.position + nJobs}
-							className="rounded bg-white shadow p-3 sm:p-6 sm:pt-0 flex sm:flex-col justify-between"
+							className="rounded-lg relative bg-white shadow p-3 sm:p-6 sm:pt-0 flex sm:flex-col justify-between"
 						>
+							<Link
+								className="absolute h-full w-full z-10 top-0 left-0 rounded-lg"
+								href={
+									data[key].source === "gupy"
+										? data[key].jobsUrl + job.url
+										: job.url
+								}
+								target="_blank"
+							/>
 							<div className="basis-1/4 flex-none h-full flex items-center">
 								<div className="w-full flex items-center relative justify-center sm:h-56 overflow-hidden">
 									{data[key].logo ? (
@@ -306,7 +315,7 @@ function JobList({ data, searchText }) {
 											return investorDiv;
 										})}
 									</div>
-									<a
+									<Link
 										className="hidden sm:flex bg-blue-900 py-2 px-3 text-white rounded-lg w-fit sm:mt-8 self-start items-center gap-x-1"
 										href={
 											data[key].source === "gupy"
@@ -317,7 +326,7 @@ function JobList({ data, searchText }) {
 									>
 										Aplicar
 										<HiExternalLink className="text-lg" />
-									</a>
+									</Link>
 								</div>
 							</div>
 						</div>
