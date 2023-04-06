@@ -425,8 +425,8 @@ export default function Home() {
 				/>
 				<meta property="twitter:image" content="meta_img.png"></meta>
 			</Head>
-			<main className="w-full bg-blue-950 min-h-screen px-4 md:px-0">
-				<div className="h-16 border-white w-full mb-8 px-4 md:px-0">
+			<main className="w-full bg-blue-950 min-h-screen px-4 xl:px-0">
+				<div className="h-16 border-white w-full mb-8 px-4 xl:px-0">
 					<nav className="container max-w-5xl h-full flex mx-auto items-center justify-between gap-x-4">
 						<button
 							// href="/"
@@ -434,7 +434,7 @@ export default function Home() {
 								setPage(0);
 								setGridType("jobs");
 							}}
-							className="h-full w-fit flex items-center gap-x-2 basis-1/3 justify-center"
+							className="h-full w-fit flex items-center gap-x-2 basis-1/3 justify-start"
 						>
 							<Image
 								src={logo}
@@ -450,7 +450,7 @@ export default function Home() {
 							VagasEmStartups.com
 						</div> */}
 
-						<div className="h-full flex items-center justify-center gap-x-8 basis-1/3">
+						<div className="h-full flex items-center justify-end gap-x-8 basis-1/3">
 							<button
 								// href="/startups"
 								onClick={() => {
@@ -475,7 +475,7 @@ export default function Home() {
 						{/* <div className="basis-1/3"></div> */}
 					</nav>
 				</div>
-				<div className="mx-auto container max-w-5xl flex flex-col items-center min-h-screen">
+				<div className="mx-auto container max-w-7xl flex flex-col items-center min-h-screen">
 					{/* <h1 className="text-8xl text-white font-bold mx-auto text-center">
 						Vagas em Startups
 					</h1> */}
@@ -520,7 +520,7 @@ export default function Home() {
 									setPage={setPage}
 								/>
 							</div>
-							<div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+							<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 max-w-5xl">
 								{gridItems.slice(
 									page * itemsPage,
 									(page + 1) * itemsPage
