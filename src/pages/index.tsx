@@ -14,7 +14,7 @@ import startupJson from "../../json/startups.json";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ startupData }) {
+export default function Home() {
 	const [page, setPage] = useState(0);
 	const [itemsPage, setItemsPage] = useState(30);
 	const [searchText, setSearchText] = useState("");
