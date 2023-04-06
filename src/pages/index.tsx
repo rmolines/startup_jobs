@@ -509,7 +509,7 @@ export default function Home() {
 							maiores fundos de Venture Capital do mundo
 						</h3>
 					</div>
-					<div className="border-b border-stone-200 w-full mt-16"></div>
+					<div className="border-b border-stone-300 w-full mt-16"></div>
 					{loading ? (
 						<div className="flex items-center justify-center grow h-full">
 							<Lottie
