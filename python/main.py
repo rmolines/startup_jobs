@@ -54,5 +54,5 @@ if __name__ == "__main__":
         if company_name not in companies_dict:
             companies_dict[company_name] = startup[company_name]
 
-    with open("./startup_jobs/json/startups.json", "w") as outfile:
+    with open("../json/startups.json", "w") as outfile:
         json.dump(companies_dict, outfile, ensure_ascii=False)
