@@ -475,7 +475,7 @@ export default function Home() {
 						{/* <div className="basis-1/3"></div> */}
 					</nav>
 				</div>
-				<div className="mx-auto container max-w-7xl flex flex-col items-center min-h-screen">
+				<div className="mx-auto container max-w-5xl flex flex-col items-center min-h-screen">
 					{/* <h1 className="text-8xl text-white font-bold mx-auto text-center">
 						Vagas em Startups
 					</h1> */}
@@ -488,6 +488,7 @@ export default function Home() {
 							maiores fundos de Venture Capital do mundo
 						</h3>
 					</div>
+					<div className="border-b border-stone-200 w-full mt-16"></div>
 					{loading ? (
 						<div className="flex items-center justify-center grow h-full">
 							<Lottie
@@ -499,7 +500,6 @@ export default function Home() {
 						</div>
 					) : (
 						<div className="flex flex-col items-center gap-y-12 mt-16">
-							<div className="border-b border-stone-200 w-full"></div>
 							<div className="relative flex max-w-lg w-full">
 								<HiSearch className="absolute inset-y-0 h-full left-2 text-xl text-slate-400" />
 								<input
@@ -520,7 +520,7 @@ export default function Home() {
 									setPage={setPage}
 								/>
 							</div>
-							<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 max-w-5xl">
+							<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
 								{gridItems.slice(
 									page * itemsPage,
 									(page + 1) * itemsPage
