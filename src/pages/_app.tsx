@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout";
 import "@/styles/globals.css";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { GoogleAnalytics } from "nextjs-google-analytics";
@@ -17,9 +18,9 @@ export function reportWebVitals(metric: NextWebVitalsMetric) {
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<>
+		<Layout>
 			<GoogleAnalytics trackPageViews />
 			<Component {...pageProps} />
-		</>
+		</Layout>
 	);
 }
