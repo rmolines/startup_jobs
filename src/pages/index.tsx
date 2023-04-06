@@ -26,272 +26,290 @@ const lilyScript = Lily_Script_One({ weight: "400", subsets: ["latin"] });
 function StartupList({ data, searchText }) {
 	let nJobs = 0;
 
-	return Object.keys(data).sort().map((key, ind) => {
-		const searchableText = `${key.toLowerCase()} ${
-			data[key].investors &&
-			data[key].investors.map((investor) => investor.toLowerCase())
-		}`.split(" ");
+	return Object.keys(data)
+		.sort()
+		.map((key, ind) => {
+			const searchableText = `${key.toLowerCase()} ${
+				data[key].investors &&
+				data[key].investors.map((investor) => investor.toLowerCase())
+			}`.split(" ");
 
-		if (searchableText.filter((s) => s.startsWith(searchText)).length === 0)
-			return;
+			if (
+				searchableText.filter((s) => s.startsWith(searchText))
+					.length === 0
+			)
+				return;
 
-		return (
-			<div
-				key={key}
-				className="rounded bg-white shadow p-6 flex flex-col justify-between"
-			>
-				<div>
-					<div className="w-full flex items-center justify-center h-64 overflow-hidden">
-						{data[key].logo ? (
-							<img
-								src={data[key].logo}
-								placeholder={loaderGif}
-								alt="logo"
-							/>
-						) : (
-							<div className="text-5xl font-bold text-center">
-								{key}
-							</div>
-						)}
-					</div>
-				</div>
-				<div>
-					<div className="text-lg font-semibold leading-tight">
-						{key}
-					</div>
-					<div className="leading-tight mt-1">
-						{data[key].companyInfo}
-					</div>
-				</div>
-				<div className="flex flex-col grow justify-end">
-					<div className="mt-8">
-						<div className="flex flex-col">
-							<div className="text-sm text-stone-700 font-semibold">
-								Investidores
-							</div>
-							<div className="flex flex-wrap mt-2"></div>
-							{data[key].investors.map((investor) => {
-								let investorDiv = [];
-
-								if (investor === "Kaszek") {
-									investorDiv.push(
-										<div className="w-1/2">
-											<Image
-												src={kaszekLogo}
-												alt="logo"
-											/>
-										</div>
-									);
-								}
-								if (investor === "Canary") {
-									investorDiv.push(
-										<div className="w-1/2">
-											<Image
-												src={canaryLogo}
-												alt="logo"
-											/>
-										</div>
-									);
-								}
-								if (investor === "Domo") {
-									investorDiv.push(
-										<div className="w-1/2">
-											<Image src={domoLogo} alt="logo" />
-										</div>
-									);
-								}
-								if (investor === "Astella") {
-									investorDiv.push(
-										<div className="w-1/2">
-											<Image
-												src={astellaLogo}
-												alt="logo"
-											/>
-										</div>
-									);
-								}
-								if (investor === "Valor") {
-									investorDiv.push(
-										<div className="w-1/2">
-											<Image src={valorLogo} alt="logo" />
-										</div>
-									);
-								}
-								if (investor === "Y Combinator") {
-									investorDiv.push(
-										<div className="w-1/2">
-											<Image src={ycLogo} alt="logo" />
-										</div>
-									);
-								}
-								return investorDiv;
-							})}
+			return (
+				<div
+					key={key}
+					className="rounded bg-white shadow p-6 pt-0 flex flex-col justify-between"
+				>
+					<div>
+						<div className="w-full flex items-center justify-center h-56 overflow-hidden">
+							{data[key].logo ? (
+								<img
+									src={data[key].logo}
+									placeholder={loaderGif}
+									alt="logo"
+								/>
+							) : (
+								<div className="text-5xl font-bold text-center">
+									{key}
+								</div>
+							)}
 						</div>
-						<a
-							className="bg-blue-900 py-2 px-3 text-white rounded-lg w-fit mt-8 self-end flex items-center gap-x-1"
-							href={data[key].companyUrl}
-							target="_blank"
-						>
-							Homepage
-							<HiExternalLink className="text-lg" />
-						</a>
+					</div>
+					<div>
+						<div className="text-lg font-semibold leading-tight">
+							{key}
+						</div>
+						<div className="leading-tight mt-1">
+							{data[key].companyInfo}
+						</div>
+					</div>
+					<div className="flex flex-col grow justify-end">
+						<div className="mt-8">
+							<div className="flex flex-col">
+								<div className="text-sm text-stone-700 font-semibold">
+									Investidores
+								</div>
+								<div className="flex flex-wrap mt-2"></div>
+								{data[key].investors.map((investor) => {
+									let investorDiv = [];
+
+									if (investor === "Kaszek") {
+										investorDiv.push(
+											<div className="w-1/2">
+												<Image
+													src={kaszekLogo}
+													alt="logo"
+												/>
+											</div>
+										);
+									}
+									if (investor === "Canary") {
+										investorDiv.push(
+											<div className="w-1/2">
+												<Image
+													src={canaryLogo}
+													alt="logo"
+												/>
+											</div>
+										);
+									}
+									if (investor === "Domo") {
+										investorDiv.push(
+											<div className="w-1/2">
+												<Image
+													src={domoLogo}
+													alt="logo"
+												/>
+											</div>
+										);
+									}
+									if (investor === "Astella") {
+										investorDiv.push(
+											<div className="w-1/2">
+												<Image
+													src={astellaLogo}
+													alt="logo"
+												/>
+											</div>
+										);
+									}
+									if (investor === "Valor") {
+										investorDiv.push(
+											<div className="w-1/2">
+												<Image
+													src={valorLogo}
+													alt="logo"
+												/>
+											</div>
+										);
+									}
+									if (investor === "Y Combinator") {
+										investorDiv.push(
+											<div className="w-1/2">
+												<Image
+													src={ycLogo}
+													alt="logo"
+												/>
+											</div>
+										);
+									}
+									return investorDiv;
+								})}
+							</div>
+							<a
+								className="bg-blue-900 py-2 px-3 text-white rounded-lg w-fit mt-8 self-end flex items-center gap-x-1"
+								href={data[key].companyUrl}
+								target="_blank"
+							>
+								Homepage
+								<HiExternalLink className="text-lg" />
+							</a>
+						</div>
 					</div>
 				</div>
-			</div>
-		);
-	});
+			);
+		});
 }
 
 function JobList({ data, searchText }) {
 	let nJobs = 0;
 	let jobsList = [];
 
-	Object.keys(data).forEach((key, ind) => {
-		if (data[key].jobsList) {
-			data[key].jobsList.forEach((job, indJob) => {
-				// if (nJobs > 10) return;
+	Object.keys(data)
+		.sort()
+		.forEach((key, ind) => {
+			if (data[key].jobsList) {
+				data[key].jobsList.forEach((job, indJob) => {
+					// if (nJobs > 10) return;
 
-				const searchableText = `${key.toLowerCase()}${job.position.toLowerCase()}${job.location.toLowerCase()}${
-					data[key].investors &&
-					data[key].investors.map((investor) =>
-						investor.toLowerCase()
-					)
-				}`;
+					const searchableText = `${key.toLowerCase()}${job.position.toLowerCase()}${job.location.toLowerCase()}${
+						data[key].investors &&
+						data[key].investors.map((investor) =>
+							investor.toLowerCase()
+						)
+					}`;
 
-				// console.log(searchableText);
-				// if (
-				// 	searchableText.filter((s) => s.includes(searchText))
-				// 		.length === 0
-				// )
-				// 	return;
+					// console.log(searchableText);
+					// if (
+					// 	searchableText.filter((s) => s.includes(searchText))
+					// 		.length === 0
+					// )
+					// 	return;
 
-				if (!searchableText.includes(searchText)) return;
+					if (!searchableText.includes(searchText)) return;
 
-				nJobs += 1;
-				jobsList.push(
-					<div
-						key={key + job.position + nJobs}
-						className="rounded bg-white shadow p-6 flex flex-col justify-between"
-					>
-						<div>
-							<div className="w-full flex items-center relative justify-center h-44 overflow-hidden">
-								{data[key].logo ? (
-									<img
-										src={data[key].logo}
-										placeholder={
-											"../../public/color-loader.gif"
-										}
-										alt="logo"
-										// className="absolute inset-x-0"
-									/>
-								) : (
-									<div className="text-5xl font-bold text-center">
+					nJobs += 1;
+					jobsList.push(
+						<div
+							key={key + job.position + nJobs}
+							className="rounded bg-white shadow p-6 pt-0 flex flex-col justify-between"
+						>
+							<div>
+								<div className="w-full flex items-center relative justify-center h-56 overflow-hidden">
+									{data[key].logo ? (
+										<img
+											src={data[key].logo}
+											placeholder={
+												"../../public/color-loader.gif"
+											}
+											alt="logo"
+											// className="absolute inset-x-0"
+										/>
+									) : (
+										<div className="text-5xl font-bold text-center">
+											{key}
+										</div>
+									)}
+								</div>
+							</div>
+							<div className="flex flex-col grow justify-between">
+								<div>
+									<div className="text-lg font-semibold leading-tight">
+										{job.position}
+									</div>
+									<div className="leading-tight mt-1">
 										{key}
 									</div>
-								)}
-							</div>
-						</div>
-						<div className="flex flex-col grow justify-between">
-							<div>
-								<div className="text-lg font-semibold leading-tight">
-									{job.position}
-								</div>
-								<div className="leading-tight mt-1">{key}</div>
-								<div className="text-sm mt-1 font-light text-stone-500">
-									{job.location}
-								</div>
-							</div>
-							<div className="mt-8">
-								<div className="flex flex-col">
-									<div className="text-sm text-stone-700 font-semibold">
-										Investidores
+									<div className="text-sm mt-1 font-light text-stone-500">
+										{job.location}
 									</div>
-									<div className="flex flex-wrap mt-2"></div>
-									{data[key].investors.map((investor) => {
-										let investorDiv = [];
-
-										if (investor === "Kaszek") {
-											investorDiv.push(
-												<div className="w-1/2">
-													<Image
-														src={kaszekLogo}
-														alt="logo"
-													/>
-												</div>
-											);
-										}
-										if (investor === "Canary") {
-											investorDiv.push(
-												<div className="w-1/2">
-													<Image
-														src={canaryLogo}
-														alt="logo"
-													/>
-												</div>
-											);
-										}
-										if (investor === "Domo") {
-											investorDiv.push(
-												<div className="w-1/2">
-													<Image
-														src={domoLogo}
-														alt="logo"
-													/>
-												</div>
-											);
-										}
-										if (investor === "Astella") {
-											investorDiv.push(
-												<div className="w-1/2">
-													<Image
-														src={astellaLogo}
-														alt="logo"
-													/>
-												</div>
-											);
-										}
-										if (investor === "Valor") {
-											investorDiv.push(
-												<div className="w-1/2">
-													<Image
-														src={valorLogo}
-														alt="logo"
-													/>
-												</div>
-											);
-										}
-										if (investor === "Y Combinator") {
-											investorDiv.push(
-												<div className="w-1/2">
-													<Image
-														src={ycLogo}
-														alt="logo"
-													/>
-												</div>
-											);
-										}
-										return investorDiv;
-									})}
 								</div>
-								<a
-									className="bg-blue-900 py-2 px-3 text-white rounded-lg w-fit mt-8 self-start flex items-center gap-x-1"
-									href={
-										data[key].source === "gupy"
-											? data[key].jobsUrl + job.url
-											: job.url
-									}
-									target="_blank"
-								>
-									Aplicar
-									<HiExternalLink className="text-lg" />
-								</a>
+								<div className="mt-8">
+									<div className="flex flex-col">
+										<div className="text-sm text-stone-700 font-semibold">
+											Investidores
+										</div>
+										<div className="flex flex-wrap mt-2"></div>
+										{data[key].investors.map((investor) => {
+											let investorDiv = [];
+
+											if (investor === "Kaszek") {
+												investorDiv.push(
+													<div className="w-1/2">
+														<Image
+															src={kaszekLogo}
+															alt="logo"
+														/>
+													</div>
+												);
+											}
+											if (investor === "Canary") {
+												investorDiv.push(
+													<div className="w-1/2">
+														<Image
+															src={canaryLogo}
+															alt="logo"
+														/>
+													</div>
+												);
+											}
+											if (investor === "Domo") {
+												investorDiv.push(
+													<div className="w-1/2">
+														<Image
+															src={domoLogo}
+															alt="logo"
+														/>
+													</div>
+												);
+											}
+											if (investor === "Astella") {
+												investorDiv.push(
+													<div className="w-1/2">
+														<Image
+															src={astellaLogo}
+															alt="logo"
+														/>
+													</div>
+												);
+											}
+											if (investor === "Valor") {
+												investorDiv.push(
+													<div className="w-1/2">
+														<Image
+															src={valorLogo}
+															alt="logo"
+														/>
+													</div>
+												);
+											}
+											if (investor === "Y Combinator") {
+												investorDiv.push(
+													<div className="w-1/2">
+														<Image
+															src={ycLogo}
+															alt="logo"
+														/>
+													</div>
+												);
+											}
+											return investorDiv;
+										})}
+									</div>
+									<a
+										className="bg-blue-900 py-2 px-3 text-white rounded-lg w-fit mt-8 self-start flex items-center gap-x-1"
+										href={
+											data[key].source === "gupy"
+												? data[key].jobsUrl + job.url
+												: job.url
+										}
+										target="_blank"
+									>
+										Aplicar
+										<HiExternalLink className="text-lg" />
+									</a>
+								</div>
 							</div>
 						</div>
-					</div>
-				);
-			});
-		}
-	});
+					);
+				});
+			}
+		});
 
 	return jobsList;
 }
