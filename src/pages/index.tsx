@@ -26,7 +26,7 @@ const lilyScript = Lily_Script_One({ weight: "400", subsets: ["latin"] });
 function StartupList({ data, searchText }) {
 	let nJobs = 0;
 
-	return Object.keys(data).map((key, ind) => {
+	return Object.keys(data).sort().map((key, ind) => {
 		const searchableText = `${key.toLowerCase()} ${
 			data[key].investors &&
 			data[key].investors.map((investor) => investor.toLowerCase())
