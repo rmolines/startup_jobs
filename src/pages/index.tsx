@@ -524,10 +524,10 @@ export default function Home() {
 						Vagas em Startups
 					</h1> */}
 					<div className="max-w-full w-[48rem]">
-						<h1 className="text-6xl font-semibold text-white mx-auto text-center mt-8">
+						<h1 className="text-4xl sm:text-6xl font-semibold text-white mx-auto text-center mt-8">
 							Encontre as vagas das melhores startups
 						</h1>
-						<h3 className="text-2xl font-extralight tracking-wide text-stone-200 mx-auto text-center mt-2">
+						<h3 className="text-xl sm:text-2xl font-extralight tracking-wide text-stone-200 mx-auto text-center mt-2">
 							Trabalhe em startups brasileiras investidas pelos
 							maiores fundos de Venture Capital do mundo
 						</h3>
