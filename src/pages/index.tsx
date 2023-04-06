@@ -481,7 +481,10 @@ export default function Home() {
 							</button>
 							<button
 								// href="/startups"
-								onClick={() => setGridType("startups")}
+								onClick={() => {
+									setPage(0);
+									setGridType("startups");
+								}}
 								className="text-white text-lg"
 							>
 								Startups
