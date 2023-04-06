@@ -459,7 +459,7 @@ export default function Home() {
 								alt="logo"
 								className="h-2/5 w-auto my-auto"
 							/>
-							<h1 className="text-white hidden sm:relative text-xl whitespace-nowrap">
+							<h1 className="text-white hidden sm:block text-xl whitespace-nowrap">
 								VagasEmStartups.com
 							</h1>
 						</button>
