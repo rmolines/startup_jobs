@@ -466,7 +466,7 @@ export default function Home() {
 				/>
 				<meta property="twitter:image" content="meta_img.png"></meta>
 			</Head>
-			<main className="w-full bg-blue-950 min-h-screen px-4 xl:px-0">
+			<main className="w-full bg-blue-950 min-h-screen px-2 sm:px-4 xl:px-0">
 				<div className="h-16 border-white w-full mb-8 px-4 xl:px-0">
 					<nav className="container max-w-5xl h-full flex mx-auto items-center justify-between gap-x-4">
 						<button
@@ -564,7 +564,7 @@ export default function Home() {
 									setPage={setPage}
 								/>
 							</div>
-							<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+							<div className="grid grid-cols-1 gap-2 sm:gap-4 sm:grid-cols-2 md:grid-cols-3">
 								{gridItems.slice(
 									page * itemsPage,
 									(page + 1) * itemsPage
