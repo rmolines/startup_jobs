@@ -10,12 +10,11 @@ import loader from "../../json/color-loader.json";
 import { Gallery } from "@/components/Gallery";
 import { JobList } from "@/components/JobList";
 import { useRouter } from "next/router";
+import startupJson from "../../json/startups.json";
 
 const inter = Inter({ subsets: ["latin"] });
 
-//Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
-
-export default function Home() {
+export default function Home({ startupData }) {
 	const [page, setPage] = useState(0);
 	const [itemsPage, setItemsPage] = useState(30);
 	const [searchText, setSearchText] = useState("");
@@ -23,21 +22,27 @@ export default function Home() {
 	const [loading, setLoading] = useState(true);
 	const router = useRouter();
 
-	const { searchParam } = router.query;
-
-	const fetcher = (url: string) => fetch(url).then((res) => res.json());
-	const { data, error } = useSWR("/api/startupdata", fetcher);
+	const { searchParam, pageParam } = router.query;
 
 	useEffect(() => {
-		if (data) {
-			setGridItems(JobList({ data, page, itemsPage, searchText }));
-			setLoading(false);
-		}
-	}, [data, searchText]);
+		setGridItems(JobList({ data: startupJson, searchText }));
+		setLoading(false);
+	}, []);
+
+	// useEffect(() => {
+	// 	if (startupData) {
+	// 		setGridItems(JobList({ startupData, page, itemsPage, searchText }));
+	// 		setLoading(false);
+	// 	}
+	// }, [startupData, searchText]);
 
 	useEffect(() => {
 		if (searchParam) setSearchText(searchParam.toString());
 	}, [searchParam]);
+
+	useEffect(() => {
+		if (pageParam) setPage(Number(pageParam));
+	}, [pageParam]);
 
 	return (
 		<>

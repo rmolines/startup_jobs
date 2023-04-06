@@ -11,27 +11,55 @@ import { Gallery } from "@/components/Gallery";
 import { JobList } from "@/components/JobList";
 import { NavHeader } from "@/components/NavHeader";
 import { StartupList } from "@/components/StartupList";
+import startupJson from "../../../json/startups.json";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
-//Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
+export async function getStaticPaths() {
+	let paths: { params: { pageParam: Number } }[] = [];
 
-export default function Home() {
+	const nPages = Math.ceil(Object.keys(startupJson).length / 30);
+
+	for (let i = 0; i++; i < nPages) {
+		paths.push({ params: { pageParam: i } });
+	}
+
+	// We'll pre-render only these paths at build time.
+	// { fallback: false } means other routes should 404.
+	return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params: { pageParam } }) {
+	// By returning { props: { posts } }, the Blog component
+	// will receive `posts` as a prop at build time
+	return {
+		props: {
+			startupData: startupJson,
+		},
+	};
+}
+
+export default function Home({ startupData }) {
 	const [page, setPage] = useState(0);
 	const [itemsPage, setItemsPage] = useState(30);
 	const [searchText, setSearchText] = useState("");
 	const [gridItems, setGridItems] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const router = useRouter();
 
-	const fetcher = (url: string) => fetch(url).then((res) => res.json());
-	const { data, error } = useSWR("/api/startupdata", fetcher);
+	const { searchParam, pageParam } = router.query;
 
 	useEffect(() => {
-		if (data) {
-			setGridItems(StartupList({ data, searchText }));
+		if (startupData) {
+			setGridItems(StartupList({ startupData, searchText }));
 			setLoading(false);
 		}
-	}, [data, searchText]);
+	}, [startupData, searchText]);
+
+	useEffect(() => {
+		if (pageParam) setPage(Number(pageParam));
+	}, [pageParam]);
 
 	return (
 		<>
