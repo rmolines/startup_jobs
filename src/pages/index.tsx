@@ -190,7 +190,7 @@ function JobList({ data, searchText }) {
 							className="rounded-lg relative bg-white shadow p-3 sm:p-6 sm:pt-0 flex sm:flex-col justify-between"
 						>
 							<Link
-								className="absolute h-full w-full z-10 top-0 left-0 rounded-lg"
+								className="sm:hidden absolute h-full w-full z-10 top-0 left-0 rounded-lg"
 								href={
 									data[key].source === "gupy"
 										? data[key].jobsUrl + job.url
@@ -243,12 +243,11 @@ function JobList({ data, searchText }) {
 										{job.location}
 									</div>
 								</div>
-								<div className="mt-2 sm:mt-8">
-									<div className="flex flex-col">
-										<div className="text-sm text-stone-700 font-semibold">
+								<div className="mt-2 sm:mt-4">
+									<div className="flex flex-col justify-end">
+										<div className="text-sm text-stone-700 mb-1">
 											Investidores
 										</div>
-										<div className="flex flex-wrap mt-2"></div>
 										{data[key].investors.map((investor) => {
 											let investorDiv = [];
 
@@ -316,7 +315,7 @@ function JobList({ data, searchText }) {
 										})}
 									</div>
 									<Link
-										className="hidden sm:flex bg-blue-900 py-2 px-3 text-white rounded-lg w-fit sm:mt-8 self-start items-center gap-x-1"
+										className="hidden sm:flex bg-blue-900 py-2 px-3 text-white rounded-lg w-fit sm:mt-4 self-start items-center gap-x-1"
 										href={
 											data[key].source === "gupy"
 												? data[key].jobsUrl + job.url
