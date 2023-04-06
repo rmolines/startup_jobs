@@ -12,6 +12,8 @@ export function JobList({ data, searchText }) {
 	let nJobs = 0;
 	let jobsList = [];
 
+	console.l;
+
 	Object.keys(data)
 		.sort()
 		.forEach((key, ind) => {
