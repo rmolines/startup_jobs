@@ -191,7 +191,7 @@ function JobList({ data, searchText }) {
 								)}
 							</div>
 						</div>
-						<div className="flex flex-col grow justify-end">
+						<div className="flex flex-col grow justify-between">
 							<div>
 								<div className="text-lg font-semibold leading-tight">
 									{job.position}
