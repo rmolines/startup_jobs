@@ -80,7 +80,7 @@ function StartupList({ data, searchText }) {
 
 									if (investor === "Kaszek") {
 										investorDiv.push(
-											<div className="w-1/2">
+											<div className="w-1/3 sm:1/2">
 												<Image
 													src={kaszekLogo}
 													alt="logo"
@@ -90,7 +90,7 @@ function StartupList({ data, searchText }) {
 									}
 									if (investor === "Canary") {
 										investorDiv.push(
-											<div className="w-1/2">
+											<div className="w-1/3 sm:1/2">
 												<Image
 													src={canaryLogo}
 													alt="logo"
@@ -100,7 +100,7 @@ function StartupList({ data, searchText }) {
 									}
 									if (investor === "Domo") {
 										investorDiv.push(
-											<div className="w-1/2">
+											<div className="w-1/3 sm:1/2">
 												<Image
 													src={domoLogo}
 													alt="logo"
@@ -110,7 +110,7 @@ function StartupList({ data, searchText }) {
 									}
 									if (investor === "Astella") {
 										investorDiv.push(
-											<div className="w-1/2">
+											<div className="w-1/3 sm:1/2">
 												<Image
 													src={astellaLogo}
 													alt="logo"
@@ -120,7 +120,7 @@ function StartupList({ data, searchText }) {
 									}
 									if (investor === "Valor") {
 										investorDiv.push(
-											<div className="w-1/2">
+											<div className="w-1/3 sm:1/2">
 												<Image
 													src={valorLogo}
 													alt="logo"
@@ -130,7 +130,7 @@ function StartupList({ data, searchText }) {
 									}
 									if (investor === "Y Combinator") {
 										investorDiv.push(
-											<div className="w-1/2">
+											<div className="w-1/3 sm:1/2">
 												<Image
 													src={ycLogo}
 													alt="logo"
@@ -187,10 +187,10 @@ function JobList({ data, searchText }) {
 					jobsList.push(
 						<div
 							key={key + job.position + nJobs}
-							className="rounded bg-white shadow p-6 pt-0 flex flex-col justify-between"
+							className="rounded bg-white shadow p-3 sm:p-6 sm:pt-0 flex sm:flex-col justify-between"
 						>
-							<div>
-								<div className="w-full flex items-center relative justify-center h-56 overflow-hidden">
+							<div className="basis-1/4 flex-none h-full flex items-center">
+								<div className="w-full flex items-center relative justify-center sm:h-56 overflow-hidden">
 									{data[key].logo ? (
 										<img
 											src={data[key].logo}
@@ -201,13 +201,28 @@ function JobList({ data, searchText }) {
 											// className="absolute inset-x-0"
 										/>
 									) : (
-										<div className="text-5xl font-bold text-center">
-											{key}
-										</div>
+										<>
+											<div className="hidden sm:block text-5xl font-bold text-center">
+												{key}
+											</div>
+											<foreignObject
+												width={"100%"}
+												height={"100%"}
+												xmlns="http://www.w3.org/2000/svg"
+												className="sm:hidden"
+											>
+												<p
+													xmlns="http://www.w3.org/1999/xhtml"
+													className="text-center font-semibold"
+												>
+													{key}
+												</p>
+											</foreignObject>
+										</>
 									)}
 								</div>
 							</div>
-							<div className="flex flex-col grow justify-between">
+							<div className="flex flex-col grow justify-between pl-4 sm:pl-0">
 								<div>
 									<div className="text-lg font-semibold leading-tight">
 										{job.position}
@@ -219,7 +234,7 @@ function JobList({ data, searchText }) {
 										{job.location}
 									</div>
 								</div>
-								<div className="mt-8">
+								<div className="mt-2 sm:mt-8">
 									<div className="flex flex-col">
 										<div className="text-sm text-stone-700 font-semibold">
 											Investidores
@@ -230,7 +245,7 @@ function JobList({ data, searchText }) {
 
 											if (investor === "Kaszek") {
 												investorDiv.push(
-													<div className="w-1/2">
+													<div className="w-1/3 sm:1/2">
 														<Image
 															src={kaszekLogo}
 															alt="logo"
@@ -240,7 +255,7 @@ function JobList({ data, searchText }) {
 											}
 											if (investor === "Canary") {
 												investorDiv.push(
-													<div className="w-1/2">
+													<div className="w-1/3 sm:1/2">
 														<Image
 															src={canaryLogo}
 															alt="logo"
@@ -250,7 +265,7 @@ function JobList({ data, searchText }) {
 											}
 											if (investor === "Domo") {
 												investorDiv.push(
-													<div className="w-1/2">
+													<div className="w-1/3 sm:1/2">
 														<Image
 															src={domoLogo}
 															alt="logo"
@@ -260,7 +275,7 @@ function JobList({ data, searchText }) {
 											}
 											if (investor === "Astella") {
 												investorDiv.push(
-													<div className="w-1/2">
+													<div className="w-1/3 sm:1/2">
 														<Image
 															src={astellaLogo}
 															alt="logo"
@@ -270,7 +285,7 @@ function JobList({ data, searchText }) {
 											}
 											if (investor === "Valor") {
 												investorDiv.push(
-													<div className="w-1/2">
+													<div className="w-1/3 sm:1/2">
 														<Image
 															src={valorLogo}
 															alt="logo"
@@ -280,7 +295,7 @@ function JobList({ data, searchText }) {
 											}
 											if (investor === "Y Combinator") {
 												investorDiv.push(
-													<div className="w-1/2">
+													<div className="w-1/3 sm:1/2">
 														<Image
 															src={ycLogo}
 															alt="logo"
@@ -292,7 +307,7 @@ function JobList({ data, searchText }) {
 										})}
 									</div>
 									<a
-										className="bg-blue-900 py-2 px-3 text-white rounded-lg w-fit mt-8 self-start flex items-center gap-x-1"
+										className="hidden sm:block bg-blue-900 py-2 px-3 text-white rounded-lg w-fit sm:mt-8 self-start flex items-center gap-x-1"
 										href={
 											data[key].source === "gupy"
 												? data[key].jobsUrl + job.url
