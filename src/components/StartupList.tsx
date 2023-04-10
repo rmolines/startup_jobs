@@ -129,17 +129,30 @@ export function StartupList({ data, searchText }) {
 								})}
 							</div>
 							<div className="flex justify-start gap-x-2 items-center w-full">
-								<Link
-									className="bg-blue-900 border-blue-900 border-2 py-1.5 px-2.5 text-white h-full rounded-lg w-fit mt-8 self-end flex items-center gap-x-1"
-									href={{
-										pathname: "/",
-										query: {
-											searchParam: key.toLowerCase(),
-										},
-									}}
-								>
-									Vagas
-								</Link>
+								{data[key].jobsList &&
+								data[key].jobsList.length === 0 ? (
+									<div className="bg-gray-300 border-gray-300 border-2 py-1.5 px-2.5 text-white h-full rounded-lg w-fit mt-8 self-end flex items-center gap-x-1">
+										{`${
+											data[key].jobsList &&
+											data[key].jobsList.length
+										} vagas`}
+									</div>
+								) : (
+									<Link
+										className="bg-blue-900 border-blue-900 border-2 py-1.5 px-2.5 text-white h-full rounded-lg w-fit mt-8 self-end flex items-center gap-x-1"
+										href={{
+											pathname: "/",
+											query: {
+												searchParam: key.toLowerCase(),
+											},
+										}}
+									>
+										{`${
+											data[key].jobsList &&
+											data[key].jobsList.length
+										} vagas`}
+									</Link>
+								)}
 								<Link
 									className="border-blue-900 border-2 py-1.5 px-2.5 h-full text-blue-900 rounded-lg w-fit mt-8 self-end flex items-center gap-x-1"
 									href={data[key].companyUrl}
