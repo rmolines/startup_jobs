@@ -124,13 +124,27 @@ export default function Home() {
 							/>
 						</div>
 					) : (
-						<Gallery
-							page={page}
-							setPage={setPage}
-							itemsPage={itemsPage}
-							setSearchText={setSearchText}
-							gridItems={gridItems}
-						></Gallery>
+						<>
+							<div className="relative flex max-w-lg w-full mt-12">
+								<HiSearch className="absolute inset-y-0 h-full left-2 text-xl text-slate-400" />
+								<input
+									className="bg-stone-50 mx-auto w-full pl-8 rounded-lg border-2 border-stone-300 px-3 py-1.5 text-xl"
+									placeholder="Pesquisar..."
+									value={searchText}
+									onChange={(event) => {
+										page > 0 && setPage(0);
+										setSearchText(event.target.value);
+									}}
+								/>
+							</div>
+							<Gallery
+								page={page}
+								setPage={setPage}
+								itemsPage={itemsPage}
+								setSearchText={setSearchText}
+								gridItems={gridItems}
+							></Gallery>
+						</>
 					)}
 				</div>
 			</main>

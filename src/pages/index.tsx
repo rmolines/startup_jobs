@@ -27,7 +27,7 @@ export default function Home() {
 	useEffect(() => {
 		setGridItems(JobList({ data: startupJson, searchText }));
 		setLoading(false);
-	}, []);
+	}, [searchText]);
 
 	// useEffect(() => {
 	// 	if (startupData) {
@@ -152,7 +152,7 @@ export default function Home() {
 								itemsPage={itemsPage}
 								setSearchText={setSearchText}
 								gridItems={gridItems}
-							></Gallery>
+							/>
 						</>
 					)}
 				</div>

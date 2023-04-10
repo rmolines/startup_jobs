@@ -33,7 +33,9 @@ export function JobList({ data, searchText }) {
 					// 	return;
 
 					if (!searchableText.includes(searchText)) return;
+
 					nJobs += 1;
+
 					jobsList.push(
 						<div
 							key={key + job.position + nJobs}
