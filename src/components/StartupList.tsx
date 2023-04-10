@@ -10,20 +10,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 export function StartupList({ data, searchText }) {
-	let nJobs = 0;
-	return Object.keys(data)
+	let startupList = [];
+	Object.keys(data)
 		.sort()
-		.map((key, ind) => {
-			const searchableText = `${key.toLowerCase()} ${
+		.forEach((key, ind) => {
+			const searchableText = `${key}${data[key].companyInfo}${
 				data[key].investors &&
-				data[key].investors.map((investor) => investor.toLowerCase())
-			}`.split(" ");
-			if (
-				searchableText.filter((s) => s.startsWith(searchText))
-					.length === 0
-			)
-				return;
-			return (
+				data[key].investors.map((investor) => investor)
+			}`.toLowerCase();
+
+			if (!searchableText.includes(searchText.toLowerCase())) return;
+
+			startupList.push(
 				<div
 					key={key}
 					className="rounded bg-white shadow p-6 pt-0 flex flex-col justify-between"
@@ -136,7 +134,7 @@ export function StartupList({ data, searchText }) {
 									href={{
 										pathname: "/",
 										query: {
-											searchParam: key.toLowerCase(),
+											searchParam: key,
 										},
 									}}
 								>
@@ -156,4 +154,6 @@ export function StartupList({ data, searchText }) {
 				</div>
 			);
 		});
+
+	return startupList;
 }

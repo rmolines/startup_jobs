@@ -29,7 +29,7 @@ export default function Home() {
 	useEffect(() => {
 		setGridItems(StartupList({ data: startupJson, searchText }));
 		setLoading(false);
-	}, []);
+	}, [searchText]);
 
 	useEffect(() => {
 		if (pageParam) setPage(Number(pageParam));
@@ -143,7 +143,7 @@ export default function Home() {
 								itemsPage={itemsPage}
 								setSearchText={setSearchText}
 								gridItems={gridItems}
-							></Gallery>
+							/>
 						</>
 					)}
 				</div>

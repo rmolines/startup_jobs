@@ -8,6 +8,7 @@ export function Gallery(props: {
 	gridItems: string | any[];
 	itemsPage: number;
 }) {
+	console.log(props.page, props.itemsPage, props.gridItems);
 	return (
 		<>
 			{props.gridItems && props.gridItems.length > 0 ? (

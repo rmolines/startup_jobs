@@ -12,27 +12,20 @@ export function JobList({ data, searchText }) {
 	let nJobs = 0;
 	let jobsList = [];
 
-	console.l;
-
 	Object.keys(data)
 		.sort()
 		.forEach((key, ind) => {
 			if (data[key].jobsList) {
 				data[key].jobsList.forEach((job, indJob) => {
-					// if (nJobs > 10) return;
-					const searchableText = `${key.toLowerCase()}${job.position.toLowerCase()}${job.location.toLowerCase()}${
+					const searchableText = `${key}${job.position}${
+						job.location
+					}${
 						data[key].investors &&
-						data[key].investors.map((investor) =>
-							investor.toLowerCase()
-						)
-					}`; // console.log(searchableText);
-					// if (
-					// 	searchableText.filter((s) => s.includes(searchText))
-					// 		.length === 0
-					// )
-					// 	return;
+						data[key].investors.map((investor) => investor)
+					}`.toLowerCase();
 
-					if (!searchableText.includes(searchText)) return;
+					if (!searchableText.includes(searchText.toLowerCase()))
+						return;
 
 					nJobs += 1;
 
