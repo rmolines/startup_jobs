@@ -134,7 +134,7 @@ export function StartupList({ data, searchText }) {
 									href={{
 										pathname: "/",
 										query: {
-											searchParam: key,
+											searchParam: key.toLowerCase(),
 										},
 									}}
 								>

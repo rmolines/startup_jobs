@@ -34,7 +34,7 @@ export function NavHeader() {
 						Startups
 					</Link>
 					<Link
-						href="/blog"
+						href="#"
 						className="text-white text-lg hover:text-stone-200 transition-colors font-light"
 					>
 						Blog
