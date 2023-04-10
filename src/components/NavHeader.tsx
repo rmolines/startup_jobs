@@ -33,12 +33,12 @@ export function NavHeader() {
 					>
 						Startups
 					</Link>
-					<Link
+					{/* <Link
 						href="#"
 						className="text-white text-lg hover:text-stone-200 transition-colors font-light"
 					>
 						Blog
-					</Link>
+					</Link> */}
 				</div>
 			</nav>
 		</div>

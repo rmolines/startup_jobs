@@ -10,7 +10,7 @@ import loader from "../../json/color-loader.json";
 import { Gallery } from "@/components/Gallery";
 import { JobList } from "@/components/JobList";
 import { useRouter } from "next/router";
-import startupJson from "../../json/startups.json";
+// import startupJson from "../../json/startups.json";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,17 +24,15 @@ export default function Home() {
 
 	const { searchParam, pageParam } = router.query;
 
-	useEffect(() => {
-		setGridItems(JobList({ data: startupJson, searchText }));
-		setLoading(false);
-	}, [searchText]);
+	const fetcher = (url: string) => fetch(url).then((res) => res.json());
+	const { data, error } = useSWR("/api/startupdata", fetcher);
 
-	// useEffect(() => {
-	// 	if (startupData) {
-	// 		setGridItems(JobList({ startupData, page, itemsPage, searchText }));
-	// 		setLoading(false);
-	// 	}
-	// }, [startupData, searchText]);
+	useEffect(() => {
+		if (data) {
+			setGridItems(JobList({ data, searchText }));
+			setLoading(false);
+		}
+	}, [searchText, data]);
 
 	useEffect(() => {
 		if (searchParam) setSearchText(searchParam.toString());

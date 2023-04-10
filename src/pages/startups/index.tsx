@@ -11,7 +11,7 @@ import { Gallery } from "@/components/Gallery";
 import { JobList } from "@/components/JobList";
 import { NavHeader } from "@/components/NavHeader";
 import { StartupList } from "@/components/StartupList";
-import startupJson from "../../../json/startups.json";
+// import startupJson from "../../../json/startups.json";
 import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,13 +23,17 @@ export default function Home() {
 	const [gridItems, setGridItems] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const router = useRouter();
-
 	const { searchParam, pageParam } = router.query;
 
+	const fetcher = (url: string) => fetch(url).then((res) => res.json());
+	const { data, error } = useSWR("/api/startupdata", fetcher);
+
 	useEffect(() => {
-		setGridItems(StartupList({ data: startupJson, searchText }));
-		setLoading(false);
-	}, [searchText]);
+		if (data) {
+			setGridItems(StartupList({ data, searchText }));
+			setLoading(false);
+		}
+	}, [searchText, data]);
 
 	useEffect(() => {
 		if (pageParam) setPage(Number(pageParam));
