@@ -129,7 +129,7 @@ export default function Home({ jobsArray, nItems, currentPage }) {
 						<h1 className="text-4xl sm:text-6xl font-semibold text-white mx-auto text-center mt-16">
 							Encontre vagas nas melhores startups do Brasil
 						</h1>
-						<h3 className="text-xl sm:text-2xl font-extralight px-20 tracking-wide text-stone-200 mx-auto text-center mt-2">
+						<h3 className="text-xl sm:text-2xl font-extralight px-4 md:px-20 tracking-wide text-stone-200 mx-auto text-center mt-2">
 							Trabalhe em startups brasileiras investidas pelos
 							maiores fundos de Venture Capital do mundo
 						</h3>
