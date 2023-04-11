@@ -156,7 +156,7 @@ export default function Home({ startupsArray, nItems, currentPage }) {
 						<>
 							<Gallery
 								type={"startups"}
-								page={currentPage}
+								page={parseInt(currentPage)}
 								itemsPage={itemsPage}
 								setSearchText={setSearchText}
 								gridItems={gridItems}

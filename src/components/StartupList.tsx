@@ -32,7 +32,7 @@ export function StartupList({ startupsArray, searchText }) {
 								blurDataURL={"/companyLogos" + startup.logo}
 								src={"/companyLogos" + startup.logo}
 								alt="logo" // className="absolute inset-x-0"
-								className="h-full w-auto object-scale-down"
+								className="h-full w-auto object-contain p-12"
 								fill
 							/>
 						) : (

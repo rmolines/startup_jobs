@@ -15,6 +15,13 @@ export function Pagination({ currentPage, nPages, type }) {
 				<BsCaretLeftFill className="text-white" />
 			</Link>
 			{Array.from(Array(nPages).keys()).map((pageNum) => {
+				console.log(
+					currentPage,
+					pageNum + 1,
+					currentPage === pageNum + 1,
+					typeof currentPage,
+					typeof pageNum
+				);
 				return (
 					<Link
 						// onClick={() => setPage(pageNum)}

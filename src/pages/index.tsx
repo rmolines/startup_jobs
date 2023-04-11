@@ -8,9 +8,9 @@ import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
 import Lottie from "react-lottie-player";
 import loader from "../../json/color-loader.json";
 import { Gallery } from "@/components/Gallery";
-import { JobList } from "@/components/JobList";
 import { useRouter } from "next/router";
 import jobsJson from "../../json/jobs.json";
+import JobList from "@/components/JobList";
 
 const inter = Inter({ subsets: ["latin"] });
 

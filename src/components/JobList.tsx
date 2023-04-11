@@ -7,8 +7,9 @@ import ycLogo from "../../public/logos/yc.png";
 import Link from "next/link";
 import { HiExternalLink } from "react-icons/hi";
 import Image from "next/image";
+import { Component } from "react";
 
-export function JobList({ jobsArray, searchText }) {
+export default function JobList({ jobsArray, searchText }) {
 	let nJobs = 0;
 	let jobs = [];
 
