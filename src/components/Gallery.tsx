@@ -1,40 +1,33 @@
 import { HiSearch } from "react-icons/hi";
 import { Pagination } from "./Pagination";
+import { type } from "os";
 
 export function Gallery(props: {
+	type: string;
 	page: number;
-	setPage: (arg0: number) => any;
-	setSearchText: (arg0: string) => void;
 	gridItems: string | any[];
 	itemsPage: number;
+	nItems: number;
 }) {
-	console.log(props.page, props.itemsPage, props.gridItems);
 	return (
 		<>
-			{props.gridItems && props.gridItems.length > 0 ? (
+			{props.gridItems && props.nItems > 0 ? (
 				<div className="flex flex-col items-center gap-y-12 mt-16">
 					<div>
 						<Pagination
+							type={props.type}
 							currentPage={props.page}
-							nPages={Math.ceil(
-								props.gridItems.length / props.itemsPage
-							)}
-							setPage={props.setPage}
+							nPages={Math.ceil(props.nItems / props.itemsPage)}
 						/>
 					</div>
 					<div className="grid grid-cols-1 gap-2 sm:gap-4 sm:grid-cols-2 md:grid-cols-3">
-						{props.gridItems.slice(
-							props.page * props.itemsPage,
-							(props.page + 1) * props.itemsPage
-						)}
+						{props.gridItems}
 					</div>
 					<div className="mb-16">
 						<Pagination
+							type={props.type}
 							currentPage={props.page}
-							nPages={Math.ceil(
-								props.gridItems.length / props.itemsPage
-							)}
-							setPage={props.setPage}
+							nPages={Math.ceil(props.nItems / props.itemsPage)}
 						/>
 					</div>
 				</div>

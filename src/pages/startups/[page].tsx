@@ -6,55 +6,63 @@ import { HiExternalLink, HiSearch } from "react-icons/hi";
 import { useCallback, useEffect, useState } from "react";
 import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
 import Lottie from "react-lottie-player";
-import loader from "../../json/color-loader.json";
+import loader from "../../../json/color-loader.json";
 import { Gallery } from "@/components/Gallery";
 import { JobList } from "@/components/JobList";
+import { NavHeader } from "@/components/NavHeader";
+import { StartupList } from "@/components/StartupList";
+import startupJson from "../../../json/startups.json";
 import { useRouter } from "next/router";
-import jobsJson from "../../json/jobs.json";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// This function gets called at build time
-export async function getStaticProps() {
-	const sorted = Object.keys(jobsJson)
+export async function getStaticPaths() {
+	let paths: { params: { page: string } }[] = [];
+
+	const nPages = Math.ceil(Object.keys(startupJson).length / 30);
+
+	for (let i = 1; i < nPages + 1; i++) {
+		paths.push({ params: { page: i.toString() } });
+	}
+
+	// We'll pre-render only these paths at build time.
+	// { fallback: false } means other routes should 404.
+	return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+	const sorted = Object.keys(startupJson)
 		.sort()
 		.reduce((accumulator, key) => {
-			accumulator[key] = jobsJson[key];
+			accumulator[key] = startupJson[key];
 
 			return accumulator;
 		}, {});
 
 	return {
 		props: {
-			jobsArray: Object.values(sorted).slice(0, 30),
-			nItems: Object.values(sorted).length,
-			currentPage: 1,
+			startupsArray: Object.values(sorted).slice(
+				(params.page - 1) * 30,
+				params.page * 30
+			),
+			nItems: Object.keys(sorted).length,
+			currentPage: params.page,
 		},
 	};
 }
 
-export default function Home({ jobsArray, nItems, currentPage }) {
+export default function Home({ startupsArray, nItems, currentPage }) {
 	const [itemsPage, setItemsPage] = useState(30);
 	const [searchText, setSearchText] = useState("");
 	const [gridItems, setGridItems] = useState([]);
 	const [loading, setLoading] = useState(true);
-	const router = useRouter();
 
-	// const { searchParam, pageParam } = router.query;
 	useEffect(() => {
-		if (jobsArray) {
-			setGridItems(JobList({ jobsArray, searchText }));
+		if (startupsArray) {
+			setGridItems(StartupList({ startupsArray, searchText }));
 			setLoading(false);
 		}
-	}, [jobsArray, searchText]);
-
-	// useEffect(() => {
-	// 	if (searchParam) setSearchText(searchParam.toString());
-	// }, [searchParam]);
-
-	// useEffect(() => {
-	// 	if (pageParam) setPage(Number(pageParam));
-	// }, [pageParam]);
+	}, [searchText, startupsArray]);
 
 	return (
 		<>
@@ -126,11 +134,11 @@ export default function Home({ jobsArray, nItems, currentPage }) {
 			>
 				<div className="mx-auto container max-w-5xl flex flex-col items-center min-h-screen">
 					<div className="max-w-full w-[56rem]">
-						<h1 className="text-4xl sm:text-6xl font-semibold text-white mx-auto text-center mt-16">
-							Encontre vagas nas melhores startups do Brasil
+						<h1 className="text-4xl sm:text-6xl px-8 font-semibold text-white mx-auto text-center mt-16">
+							Encontre as melhores startups do Brasil
 						</h1>
 						<h3 className="text-xl sm:text-2xl font-extralight px-20 tracking-wide text-stone-200 mx-auto text-center mt-2">
-							Trabalhe em startups brasileiras investidas pelos
+							Procure por startups brasileiras investidas pelos
 							maiores fundos de Venture Capital do mundo
 						</h3>
 					</div>
@@ -147,9 +155,10 @@ export default function Home({ jobsArray, nItems, currentPage }) {
 					) : (
 						<>
 							<Gallery
-								type="vagas"
-								page={parseInt(currentPage)}
+								type={"startups"}
+								page={currentPage}
 								itemsPage={itemsPage}
+								setSearchText={setSearchText}
 								gridItems={gridItems}
 								nItems={nItems}
 							/>

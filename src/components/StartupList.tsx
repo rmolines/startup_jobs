@@ -9,54 +9,53 @@ import ycLogo from "../../public/logos/yc.png";
 import Image from "next/image";
 import Link from "next/link";
 
-export function StartupList({ data, searchText }) {
+export function StartupList({ startupsArray, searchText }) {
 	let startupList = [];
-	Object.keys(data)
-		.sort()
-		.forEach((key, ind) => {
-			const searchableText = `${key}${data[key].companyInfo}${
-				data[key].investors &&
-				data[key].investors.map((investor) => investor)
-			}`.toLowerCase();
 
-			if (!searchableText.includes(searchText.toLowerCase())) return;
+	startupsArray.forEach((startup, ind) => {
+		const searchableText = `${startup.companyName}${
+			startup.investors && startup.investors.map((investor) => investor)
+		}`.toLowerCase();
 
-			startupList.push(
-				<div
-					key={key}
-					className="rounded bg-white shadow p-6 pt-0 flex flex-col justify-between"
-				>
-					<div>
-						<div className="w-full flex items-center justify-center h-56 overflow-hidden">
-							{data[key].logo ? (
-								<img
-									src={data[key].logo}
-									placeholder={loaderGif}
-									alt="logo"
-								/>
-							) : (
-								<div className="text-5xl font-bold text-center">
-									{key}
-								</div>
-							)}
-						</div>
+		if (!searchableText.includes(searchText.toLowerCase())) return;
+
+		startupList.push(
+			<div
+				key={startup.companyName}
+				className="rounded bg-white shadow p-6 pt-0 flex flex-col justify-between"
+			>
+				<div>
+					<div className="w-full flex items-center justify-center h-56 overflow-hidden">
+						{startup.logo ? (
+							<img
+								src={startup.logo}
+								placeholder={loaderGif}
+								alt="logo"
+							/>
+						) : (
+							<div className="text-5xl font-bold text-center">
+								{startup.companyName}
+							</div>
+						)}
 					</div>
-					<div>
-						<div className="text-lg font-semibold leading-tight">
-							{key}
-						</div>
-						<div className="leading-tight mt-1">
-							{data[key].companyInfo}
-						</div>
+				</div>
+				<div>
+					<div className="text-lg font-semibold leading-tight">
+						{startup.companyName}
 					</div>
-					<div className="flex flex-col grow justify-end">
-						<div className="mt-8">
-							<div className="flex flex-col">
-								<div className="text-sm text-stone-700 font-semibold">
-									Investidores
-								</div>
-								<div className="flex flex-wrap mt-2"></div>
-								{data[key].investors.map((investor) => {
+					<div className="leading-tight mt-1">
+						{startup.companyInfo}
+					</div>
+				</div>
+				<div className="flex flex-col grow justify-end">
+					<div className="mt-8">
+						<div className="flex flex-col">
+							<div className="text-sm text-stone-700 font-semibold">
+								Investidores
+							</div>
+							<div className="flex flex-wrap mt-2"></div>
+							{startup.investors &&
+								startup.investors.map((investor) => {
 									let investorDiv = [];
 
 									if (investor === "Kaszek") {
@@ -127,46 +126,46 @@ export function StartupList({ data, searchText }) {
 
 									return investorDiv;
 								})}
-							</div>
-							<div className="flex justify-start gap-x-2 items-center w-full">
-								{data[key].jobsList &&
-								data[key].jobsList.length === 0 ? (
-									<div className="bg-gray-300 border-gray-300 border-2 py-1.5 px-2.5 text-white h-full rounded-lg w-fit mt-8 self-end flex items-center gap-x-1">
-										{`${
-											data[key].jobsList &&
-											data[key].jobsList.length
-										} vagas`}
-									</div>
-								) : (
-									<Link
-										className="bg-blue-900 border-blue-900 border-2 py-1.5 px-2.5 text-white h-full rounded-lg w-fit mt-8 self-end flex items-center gap-x-1"
-										href={{
-											pathname: "/",
-											query: {
-												searchParam: key.toLowerCase(),
-											},
-										}}
-									>
-										{`${
-											data[key].jobsList &&
-											data[key].jobsList.length
-										} vagas`}
-									</Link>
-								)}
+						</div>
+						<div className="flex justify-start gap-x-2 items-center w-full">
+							{startup.jobsList &&
+							startup.jobsList.length === 0 ? (
+								<div className="bg-gray-300 border-gray-300 border-2 py-1.5 px-2.5 text-white h-full rounded-lg w-fit mt-8 self-end flex items-center gap-x-1">
+									{`${
+										startup.jobsList &&
+										startup.jobsList.length
+									} vagas`}
+								</div>
+							) : (
 								<Link
-									className="border-blue-900 border-2 py-1.5 px-2.5 h-full text-blue-900 rounded-lg w-fit mt-8 self-end flex items-center gap-x-1"
-									href={data[key].companyUrl}
-									target="_blank"
+									className="bg-blue-900 border-blue-900 border-2 py-1.5 px-2.5 text-white h-full rounded-lg w-fit mt-8 self-end flex items-center gap-x-1"
+									href={{
+										pathname: "/search/1",
+										query: {
+											search: startup.companyName.toLowerCase(),
+										},
+									}}
 								>
-									Home
-									<HiExternalLink className="text-lg" />
+									{`${
+										startup.jobsList &&
+										startup.jobsList.length
+									} vagas`}
 								</Link>
-							</div>
+							)}
+							<Link
+								className="border-blue-900 border-2 py-1.5 px-2.5 h-full text-blue-900 rounded-lg w-fit mt-8 self-end flex items-center gap-x-1"
+								href={startup.companyUrl}
+								target="_blank"
+							>
+								Home
+								<HiExternalLink className="text-lg" />
+							</Link>
 						</div>
 					</div>
 				</div>
-			);
-		});
+			</div>
+		);
+	});
 
 	return startupList;
 }

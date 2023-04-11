@@ -9,35 +9,39 @@ import Lottie from "react-lottie-player";
 import loader from "../../../json/color-loader.json";
 import { Gallery } from "@/components/Gallery";
 import { JobList } from "@/components/JobList";
-import { NavHeader } from "@/components/NavHeader";
-import { StartupList } from "@/components/StartupList";
-// import startupJson from "../../../json/startups.json";
 import { useRouter } from "next/router";
+import jobsJson from "../../../json/jobs.json";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-	const [page, setPage] = useState(0);
 	const [itemsPage, setItemsPage] = useState(30);
-	const [searchText, setSearchText] = useState("");
 	const [gridItems, setGridItems] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [currentPage, setPage] = useState(0);
 	const router = useRouter();
-	const { searchParam, pageParam } = router.query;
 
 	const fetcher = (url: string) => fetch(url).then((res) => res.json());
-	const { data, error } = useSWR("/api/startupdata", fetcher);
+	const { data, error } = useSWR("/api/jobsData", fetcher);
 
+	const { search, page } = router.query;
 	useEffect(() => {
-		if (data) {
-			setGridItems(StartupList({ data, searchText }));
+		if (data && search) {
+			console.log(data);
+			setGridItems(
+				JobList({ jobsArray: Object.values(data), searchText: search })
+			);
 			setLoading(false);
 		}
-	}, [searchText, data]);
+	}, [data, search]);
+
+	// useEffect(() => {
+	// 	if (searchParam) setSearchText(searchParam.toString());
+	// }, [searchParam]);
 
 	useEffect(() => {
-		if (pageParam) setPage(Number(pageParam));
-	}, [pageParam]);
+		if (page) setPage(Number(page));
+	}, [page]);
 
 	return (
 		<>
@@ -109,11 +113,11 @@ export default function Home() {
 			>
 				<div className="mx-auto container max-w-5xl flex flex-col items-center min-h-screen">
 					<div className="max-w-full w-[56rem]">
-						<h1 className="text-4xl sm:text-6xl px-8 font-semibold text-white mx-auto text-center mt-16">
-							Encontre as melhores startups do Brasil
+						<h1 className="text-4xl sm:text-6xl font-semibold text-white mx-auto text-center mt-16">
+							Encontre vagas nas melhores startups do Brasil
 						</h1>
 						<h3 className="text-xl sm:text-2xl font-extralight px-20 tracking-wide text-stone-200 mx-auto text-center mt-2">
-							Procure por startups brasileiras investidas pelos
+							Trabalhe em startups brasileiras investidas pelos
 							maiores fundos de Venture Capital do mundo
 						</h3>
 					</div>
@@ -129,24 +133,12 @@ export default function Home() {
 						</div>
 					) : (
 						<>
-							<div className="relative flex max-w-lg w-full mt-12">
-								<HiSearch className="absolute inset-y-0 h-full left-2 text-xl text-slate-400" />
-								<input
-									className="bg-stone-50 mx-auto w-full pl-8 rounded-lg border-2 border-stone-300 px-3 py-1.5 text-xl"
-									placeholder="Pesquisar..."
-									value={searchText}
-									onChange={(event) => {
-										page > 0 && setPage(0);
-										setSearchText(event.target.value);
-									}}
-								/>
-							</div>
 							<Gallery
-								page={page}
-								setPage={setPage}
+								type="vagas"
+								page={currentPage}
 								itemsPage={itemsPage}
-								setSearchText={setSearchText}
 								gridItems={gridItems}
+								nItems={gridItems.length}
 							/>
 						</>
 					)}

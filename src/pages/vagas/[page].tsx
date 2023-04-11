@@ -1,13 +1,13 @@
 import Home from "..";
-import startupJson from "../../../json/startups.json";
+import jobsJson from "../../../json/jobs.json";
 
 export async function getStaticPaths() {
-	let paths: { params: { pageParam: Number } }[] = [];
+	let paths: { params: { page: string } }[] = [];
 
-	const nPages = Math.ceil(Object.keys(startupJson).length / 30);
+	const nPages = Math.ceil(jobsJson.length / 30);
 
-	for (let i = 0; i++; i < nPages) {
-		paths.push({ params: { pageParam: i } });
+	for (let i = 1; i < nPages + 1; i++) {
+		paths.push({ params: { page: i.toString() } });
 	}
 
 	// We'll pre-render only these paths at build time.
@@ -15,16 +15,29 @@ export async function getStaticPaths() {
 	return { paths, fallback: false };
 }
 
-export async function getStaticProps({ params: { pageParam } }) {
-	// By returning { props: { posts } }, the Blog component
-	// will receive `posts` as a prop at build time
+export async function getStaticProps({ params }) {
+	const sorted = Object.keys(jobsJson)
+		.sort()
+		.reduce((accumulator, key) => {
+			accumulator[key] = jobsJson[key];
+
+			return accumulator;
+		}, {});
+
 	return {
 		props: {
-			startupData: startupJson,
+			jobsArray: Object.values(sorted).slice(
+				(params.page - 1) * 30,
+				params.page * 30
+			),
+			nItems: Object.values(jobsJson).length,
+			currentPage: params.page,
 		},
 	};
 }
 
-export default function StartupJobs({ startupData }) {
-	return <Home startupData={startupData} />;
+export default function StartupJobs({ jobsArray, nItems, currentPage }) {
+	return (
+		<Home jobsArray={jobsArray} nItems={nItems} currentPage={currentPage} />
+	);
 }
