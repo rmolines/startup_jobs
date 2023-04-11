@@ -19,8 +19,3 @@ def get_jobs_linkedin1(url):
         )
 
     return jobs_list
-
-
-get_jobs_linkedin1(
-    "https://www.linkedin.com/jobs/alicerce-educa%C3%A7%C3%A3o-jobs-worldwide?f_C=12994709&trk=top-card_top-card-primary-button-top-card-primary-cta&position=1&pageNum=0"
-)

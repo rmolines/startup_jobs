@@ -39,10 +39,11 @@ export function JobList({ jobsArray, searchText }) {
 				<div className="basis-1/4 flex-none h-full flex items-center">
 					<div className="w-full flex items-center relative justify-center sm:h-56 overflow-hidden">
 						{job.logo ? (
-							<img
-								src={job.logo}
-								placeholder={"../../public/color-loader.gif"}
+							<Image
+								src={"/companyLogos" + job.logo}
 								alt="logo" // className="absolute inset-x-0"
+								className="h-full w-auto object-scale-down"
+								fill
 							/>
 						) : (
 							<>

@@ -3,6 +3,8 @@ from linkedin_scraper1 import get_jobs_linkedin1
 from gupy_scraper import get_jobs_gupy
 import json
 import multiprocessing
+import requests
+import os
 
 
 def func(arg):
@@ -36,6 +38,20 @@ def func(arg):
     return company_dict
 
 
+def logo_download(arg):
+    url = arg[0]
+    name = arg[1]
+
+    try:
+        logo = "/" + name + ".png"
+        if not os.path.isfile("./public/companyLogos" + logo):
+            img_data = requests.get(url).content
+            with open("./public/companyLogos" + logo, "wb") as handler:
+                handler.write(img_data)
+    except Exception as e:
+        print(e)
+
+
 if __name__ == "__main__":
     n_processes = multiprocessing.cpu_count()
     pool = multiprocessing.Pool(processes=n_processes)
@@ -47,15 +63,22 @@ if __name__ == "__main__":
 
     companies_list = []
     jobs_list = []
+    logos_list = []
     startups = pool.map(func, [(idx, row) for idx, row in df.iterrows()])
 
     for startup in startups:
         company_name = startup["companyName"]
+
+        logo = None
+        if startup["logo"]:
+            logo = "/" + company_name + ".png"
+            logos_list.append([startup["logo"], company_name])
+            startup["logo"] = logo
+
         if not next(
             (sub for sub in companies_list if sub["companyName"] == company_name), None
         ):
             companies_list.append(startup)
-
         for job in startup["jobsList"]:
             jobs_list.append(
                 {
@@ -65,13 +88,15 @@ if __name__ == "__main__":
                     "companyUrl": startup["companyUrl"],
                     "jobsUrl": startup["jobsUrl"],
                     "source": startup["source"],
-                    "logo": startup["logo"],
+                    "logo": logo,
                     "position": job["position"],
                     "location": job["location"],
                     "url": job["url"],
                     "level": job["level"],
                 }
             )
+
+    pool.map(logo_download, logos_list)
 
     with open("./json/startups.json", "w") as outfile:
         json.dump(

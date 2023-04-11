@@ -25,12 +25,13 @@ export function StartupList({ startupsArray, searchText }) {
 				className="rounded bg-white shadow p-6 pt-0 flex flex-col justify-between"
 			>
 				<div>
-					<div className="w-full flex items-center justify-center h-56 overflow-hidden">
+					<div className="w-full flex relative items-center justify-center h-56 overflow-hidden">
 						{startup.logo ? (
-							<img
-								src={startup.logo}
-								placeholder={loaderGif}
-								alt="logo"
+							<Image
+								src={"/companyLogos" + startup.logo}
+								alt="logo" // className="absolute inset-x-0"
+								className="h-full w-auto object-scale-down"
+								fill
 							/>
 						) : (
 							<div className="text-5xl font-bold text-center">
