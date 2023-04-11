@@ -164,7 +164,7 @@ export function JobList({ jobsArray, searchText }) {
 							</div>
 						</div>
 						<Link
-							className="hidden sm:flex bg-blue-900 py-2 px-3 text-white rounded-lg w-fit sm:mt-4 self-start items-center gap-x-1"
+							className="hidden sm:flex bg-blue-900 py-2 px-3 text-white rounded-lg w-fit sm:mt-8 self-start items-center gap-x-1"
 							href={
 								job.source === "gupy"
 									? job.jobsUrl + job.url.slice(1, -1)
