@@ -40,6 +40,8 @@ export function JobList({ jobsArray, searchText }) {
 					<div className="w-full flex items-center relative justify-center sm:h-56 overflow-hidden">
 						{job.logo ? (
 							<Image
+								placeholder="blur"
+								blurDataURL={"/companyLogos" + startup.logo}
 								src={"/companyLogos" + job.logo}
 								alt="logo" // className="absolute inset-x-0"
 								className="h-full w-auto object-scale-down"

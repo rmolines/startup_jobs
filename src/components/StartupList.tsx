@@ -28,6 +28,8 @@ export function StartupList({ startupsArray, searchText }) {
 					<div className="w-full flex relative items-center justify-center h-56 overflow-hidden">
 						{startup.logo ? (
 							<Image
+								placeholder="blur"
+								blurDataURL={"/companyLogos" + startup.logo}
 								src={"/companyLogos" + startup.logo}
 								alt="logo" // className="absolute inset-x-0"
 								className="h-full w-auto object-scale-down"
