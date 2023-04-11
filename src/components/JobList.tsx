@@ -37,7 +37,7 @@ export function JobList({ jobsArray, searchText }) {
 					target="_blank"
 				/>
 				<div className="basis-1/4 flex-none h-full flex items-center">
-					<div className="w-full flex items-center relative justify-center sm:h-56 overflow-hidden">
+					<div className="w-full flex items-center relative justify-center h-full sm:h-56 overflow-hidden">
 						{job.logo ? (
 							<Image
 								placeholder="blur"
