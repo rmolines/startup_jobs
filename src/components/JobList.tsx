@@ -41,7 +41,7 @@ export function JobList({ jobsArray, searchText }) {
 						{job.logo ? (
 							<Image
 								placeholder="blur"
-								blurDataURL={"/companyLogos" + startup.logo}
+								blurDataURL={"/companyLogos" + job.logo}
 								src={"/companyLogos" + job.logo}
 								alt="logo" // className="absolute inset-x-0"
 								className="h-full w-auto object-scale-down"
