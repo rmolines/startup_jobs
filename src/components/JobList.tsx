@@ -89,7 +89,7 @@ export function JobList({ jobsArray, searchText }) {
 							<div className="text-sm text-stone-700 mb-1">
 								Investidores
 							</div>
-							<div className="flex gap-x-2 items-center">
+							<div className="flex flex-wrap items-center gap-x-2">
 								{job.investors.map((investor) => {
 									let investorDiv = [];
 
