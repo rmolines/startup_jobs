@@ -11,7 +11,7 @@ def func(arg):
     idx, row = arg
     company_dict = {
         "companyName": row.companyName,
-        "investors": [row["VC"]],
+        "investors": row["VCList"],
         "companyInfo": row.companyInfo,
         "companyUrl": row.companyUrl,
         "jobsUrl": row.jobsUrl,
@@ -57,6 +57,12 @@ if __name__ == "__main__":
     pool = multiprocessing.Pool(processes=n_processes)
 
     df = pd.read_excel("./python/startup_jobs.xlsx").fillna("")
+    df = df.join(
+        df.groupby("companyName")["VC"].apply(list),
+        on="companyName",
+        how="left",
+        rsuffix="List",
+    ).drop_duplicates("companyName")
 
     df_gupy = df[df.source == "gupy"]
     df_linkedin1 = df[df.source == "linkedin1"]
@@ -79,6 +85,7 @@ if __name__ == "__main__":
             (sub for sub in companies_list if sub["companyName"] == company_name), None
         ):
             companies_list.append(startup)
+
         for job in startup["jobsList"]:
             jobs_list.append(
                 {

@@ -89,68 +89,79 @@ export function JobList({ jobsArray, searchText }) {
 							<div className="text-sm text-stone-700 mb-1">
 								Investidores
 							</div>
-							{job.investors.map((investor) => {
-								let investorDiv = [];
+							<div className="flex gap-x-2 items-center">
+								{job.investors.map((investor) => {
+									let investorDiv = [];
 
-								if (investor === "Kaszek") {
-									investorDiv.push(
-										<div className="w-1/3 sm:1/2">
-											<Image
-												src={kaszekLogo}
-												alt="logo"
-											/>
-										</div>
-									);
-								}
+									if (investor === "Kaszek") {
+										investorDiv.push(
+											<div className="basis-1/3 sm:1/2">
+												<Image
+													src={kaszekLogo}
+													alt="logo"
+												/>
+											</div>
+										);
+									}
 
-								if (investor === "Canary") {
-									investorDiv.push(
-										<div className="w-1/3 sm:1/2">
-											<Image
-												src={canaryLogo}
-												alt="logo"
-											/>
-										</div>
-									);
-								}
+									if (investor === "Canary") {
+										investorDiv.push(
+											<div className="basis-1/3 sm:1/2">
+												<Image
+													src={canaryLogo}
+													alt="logo"
+												/>
+											</div>
+										);
+									}
 
-								if (investor === "Domo") {
-									investorDiv.push(
-										<div className="w-1/3 sm:1/2">
-											<Image src={domoLogo} alt="logo" />
-										</div>
-									);
-								}
+									if (investor === "Domo") {
+										investorDiv.push(
+											<div className="basis-1/3 sm:1/2">
+												<Image
+													src={domoLogo}
+													alt="logo"
+												/>
+											</div>
+										);
+									}
 
-								if (investor === "Astella") {
-									investorDiv.push(
-										<div className="w-1/3 sm:1/2">
-											<Image
-												src={astellaLogo}
-												alt="logo"
-											/>
-										</div>
-									);
-								}
+									if (investor === "Astella") {
+										investorDiv.push(
+											<div className="basis-1/3 sm:1/2">
+												<Image
+													src={astellaLogo}
+													alt="logo"
+												/>
+											</div>
+										);
+									}
 
-								if (investor === "Valor") {
-									investorDiv.push(
-										<div className="w-1/3 sm:1/2">
-											<Image src={valorLogo} alt="logo" />
-										</div>
-									);
-								}
+									if (investor === "Valor") {
+										investorDiv.push(
+											<div className="basis-1/3 sm:1/2">
+												<Image
+													src={valorLogo}
+													alt="logo"
+												/>
+											</div>
+										);
+									}
 
-								if (investor === "Y Combinator") {
-									investorDiv.push(
-										<div className="w-1/3 sm:1/2">
-											<Image src={ycLogo} alt="logo" />
-										</div>
-									);
-								}
+									if (investor === "Y Combinator") {
+										investorDiv.push(
+											<div className="basis-1/3 sm:1/2">
+												<Image
+													src={ycLogo}
+													alt="logo"
+												/>
+											</div>
+										);
+									}
 
-								return investorDiv;
-							})}
+									return investorDiv;
+								})}
+							</div>
 						</div>
 						<Link
 							className="hidden sm:flex bg-blue-900 py-2 px-3 text-white rounded-lg w-fit sm:mt-4 self-start items-center gap-x-1"
