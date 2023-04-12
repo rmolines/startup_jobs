@@ -67,10 +67,10 @@ export default function Home({ startupsArray, nItems, currentPage }) {
 	return (
 		<>
 			<Head>
-				<title>Vagas em Startups</title>
+				<title>As Melhores Startups do Brasil</title>
 				<meta
 					name="description"
-					content="Encontre vagas de trabalho nas melhores startups do Brasil investidas por fundos de venture capital como Y Combinator, Canary, Valor Capital, KASZEK, Domo Invest e Astella"
+					content="Encontre as melhores startups do Brasil investidas por fundos de venture capital como Y Combinator, Canary, Valor Capital, KASZEK, Domo Invest e Astella"
 				/>
 				<meta
 					name="viewport"
