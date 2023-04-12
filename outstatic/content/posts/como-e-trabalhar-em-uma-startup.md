@@ -2,7 +2,7 @@
 title: 'Como é trabalhar em uma startup?'
 status: 'published'
 author:
-  name: 'Rafael Molines Ismael'
+  name: 'Rafael Molines'
   picture: 'https://avatars.githubusercontent.com/u/11565308?v=4'
 slug: 'como-e-trabalhar-em-uma-startup'
 description: ''
