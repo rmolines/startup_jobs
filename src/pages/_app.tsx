@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import "@/styles/globals.css";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { GoogleAnalytics } from "nextjs-google-analytics";
+import { Analytics } from "@vercel/analytics/react";
 
 export function reportWebVitals(metric: NextWebVitalsMetric) {
 	if (metric.label === "web-vital") {
@@ -21,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
 		<Layout>
 			<GoogleAnalytics trackPageViews />
 			<Component {...pageProps} />
+			<Analytics />
 		</Layout>
 	);
 }
