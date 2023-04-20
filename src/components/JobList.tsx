@@ -45,7 +45,7 @@ export default function JobList({ jobsArray, searchText }) {
 								blurDataURL={"/companyLogos" + job.logo}
 								src={"/companyLogos" + job.logo}
 								alt="logo" // className="absolute inset-x-0"
-								className="h-full w-auto object-scale-down"
+								className="object-contain py-8"
 								fill
 							/>
 						) : (
